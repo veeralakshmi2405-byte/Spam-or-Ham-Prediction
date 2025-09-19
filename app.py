@@ -1,14 +1,15 @@
 # app.py
-
 import streamlit as st
 import pickle
 import time
+import os
 
 # ==============================
-# Load Model and Vectorizer
+# Load Model and Vectorizer (Safe Path)
 # ==============================
-model = pickle.load(open("spam_model.pkl", "rb"))
-vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = pickle.load(open(os.path.join(BASE_DIR, "spam_model.pkl"), "rb"))
+vectorizer = pickle.load(open(os.path.join(BASE_DIR, "vectorizer.pkl"), "rb"))
 
 # ==============================
 # Prediction Function
@@ -72,3 +73,4 @@ def main():
 # Run App
 if __name__ == "__main__":
     main()
+
